@@ -1,0 +1,146 @@
+{"intents": [
+      
+   {"tag": "greeting",
+      
+   "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day"],
+    
+   "responses": ["Hello, thanks for asking", "Good to see you again", "Hi there, how can I help?"],
+     
+   "context": [""]
+ 
+},
+     
+   {"tag": "goodbye",
+        
+    "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
+       
+    "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."],
+       
+    "context": [""]
+        
+},
+       
+  {"tag": "thanks",
+         
+  "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
+         
+  "responses": ["Happy to help!", "Any time!", "My pleasure"],
+        
+  "context": [""]
+      
+  },
+       
+
+ {"tag": "noanswer",
+         
+  "patterns": [],
+         
+  "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand"],
+       
+  "context": [""]
+        
+},
+       
+
+  {"tag": "options",
+      
+  "patterns": ["How you could help me?", "What you can do?", "What help you provide?", "How you can be helpful?", "What support is offered"],
+         
+  "responses": ["Enter a medical item, and I can tell you how many are left at your local store or pharmacy", "Choose an item and I can tell you its stock quantitiy at your local store or pharmacy"],
+        
+  "context": [""]
+       
+ },
+   
+  {"tag": "Babies",
+  "patterns": ["Huggies Snug & Dry Diapers", "Kirkland Supreme Diapers", "diapers", "Baby Formula", "Kirkland Formula", "Enfamil Premium Infant Formula Tub & Refill", "Pedia-Sure", "Similac Advance Early Shield Formula", "Similac Sensitive Infant Formula", "Baby ointment", "Desitin Creamy ointment", "Baby Wash", "Johnson & Johnson Head to Toe Wash", "wipes" ],
+  "responses": ["Quantity of 26 are available", "Available quantity: 34", "Quantity of 58 are available", "Available quantity: 90", "Quantity of 11 are available", "Available quantity: 27", "Quantity of 21 are available", "Available quantity: 34","Quantity of 10 are available", "Available quantity: 04", "Quantity of 28 are available", "Available quantity: 14"],
+  "context": [""]
+},
+
+  {"tag": "Eye care",
+  "patterns": ["Alcon Optifree Express Multi Purpose Solution", "Allergen Refresh Tears", "Bausch & Lomb Biotrue Multi-Purpose Solution", "Boston Advance Multi Pack", "Clear Care Disinfecting Solution", "Kirkland Signature Multi Purpose Solution", "Visine Advanced Relief Pack" ],
+  "responses": ["Quantity of 98 are available", "Available quantity: 28", "Quantity of 05 are available", "Available quantity: 07", "Quantity of 25 are available", "Available quantity: 46", "Quantity of 18 are available", "Available quantity: 15" ],
+  "context_set": [""]
+},
+
+ {"tag": "First Aid",
+  "patterns": ["Band Aid", "Rubbing Alcohol", "Band Aid Assortment", "", "Kirkland Signature Hydrocortisone Cream", "Curad Alcohol Prep Pads", "Cumberland Swan Hydrogen Peroxide", "Cumberland Swan Isopropyl Alcohol", "Dr. Teal's Epsom Salt"],
+  "responses": ["Quantity of 24 are available", "Available quantity: 26", "Quantity of 05 are available", "Available quantity: 09", "Quantity of 15 are available", "Available quantity: 26", "Quantity of 12 are available", "Available quantity: 61" ],
+  "context_set": [""]
+},
+
+ {"tag": "Vitamins",
+  "patterns": ["Alaskan Omega - 3 (85% Ethyl Ester Fish Oil)", "Caltrate + D Calcium Supplement 600 mg", "Centrum Multivitamin Tablets",
+  "Centrum Silver Men 50 Plus", "Centrum Silver Multivitamin", "Centrum Silver Women's 50 Plus", "Citracal Maximum Calcium Citrate + D",
+  "Cosamin DS Capsules", "Disney's Monsters University Gummy Multi Vitamin", "Emergen C Vitamin C 1000 mg", "Ester C 500 mg",
+  "Joint Juice Glucosamine / Chondroitn Drinks", " Joint Movement Glucosamine / Chondroitn", "Kirkland Signature 200 mg", 
+  "Kirkland Signature B-12 5000 mg", "Kirkland Signature Calcium + D3 600 mg", "Kirkland Signature Calcium Chew Sugar Free",
+  "Kirkland Signature Calcium Citrate 500 mg", "Kirkland Signature Ibuprofen IB", "L'il Critters Calcium Gummy Bears",
+  "L'il Critters Gummy Vites", "Nature Made Calcium 750 mg", "Nature Made Cholest-off Plus Soft Gels", "Nature Made Coenzyme Q10 200 mg",
+  "Nature Made Diabetes Health Pack", "Nature Made Fish Oil 1200 mg", "Nature's Bounty Maximum Strength Fish Oil 1400 mg",
+  "Nature's Bounty Sublingual Vitamin B 12", "One A Day Women's 50 Plus Advantage Multivitamin", "One A Day Women's Health Formula"],
+  "responses": ["Quantity of 52 are available", "Available quantity: 22", "Quantity of 10 are available", "Available quantity: 29", "Quantity of 11 are available", "Available quantity: 24", "Quantity of 12 are available", "Available quantity: 61" ],
+  "context_set": [""]
+},
+
+  {"tag": "Household",
+  "patterns": ["Face masks", "face masks", "Toilet paper", "Flora Bath Tissue Lavender Scent", "Charmin ultra soft", "Scott 1000 toilet paper", "Bounty toilet paper", "Sparkle paper towel", "Colgate toothpaste", "toothbrush"],
+  "responses": ["Quantity of 24 are available", "Available quantity: 26", "Quantity of 05 are available", "Available quantity: 09", "Quantity of 15 are available", "Available quantity: 26", "Quantity of 12 are available", "Available quantity: 61" ],
+  "context_set": [""]
+},
+    
+ {"tag": "Pharmacy",
+  "patterns": ["CVS", "Walgreens", "Costco", "Walmart", "Pharmacy", "San Jose Pharmacy", "Los Alamitos Pharmacy", "Target", "Alto Pharmacy", "Kmart", "Kaiser Permanente", "GoodRX" ],
+  "responses": ["Ok, found your pharmacy!"],
+  "context_set": [""]
+},
+
+ {"tag": "adverse_drug",
+         "patterns": ["How to check Adverse drug reaction?", "Open adverse drugs module", "Give me a list of drugs causing adverse behavior", "List all drugs suitable for patient with adverse reaction", "Which drugs dont have adverse reaction?" ],
+         "responses": ["Navigating to Adverse drug reaction module"],
+         "context": [""]
+        },
+        {"tag": "blood_pressure",
+         "patterns": ["Open blood pressure module", "Task related to blood pressure", "Blood pressure data entry", "I want to log blood pressure results", "Blood pressure data management" ],
+         "responses": ["Navigating to Blood Pressure module"],
+         "context": [""]
+        },
+        {"tag": "blood_pressure_search",
+         "patterns": ["I want to search for blood pressure result history", "Blood pressure for patient", "Load patient blood pressure result", "Show blood pressure results for patient", "Find blood pressure results by ID" ],
+         "responses": ["Please provide Patient ID", "Patient ID?"],
+         "context": ["search_blood_pressure_by_patient_id"]
+        },
+        {"tag": "search_blood_pressure_by_patient_id",
+         "patterns": [],
+         "responses": ["Loading Blood pressure result for Patient"],
+         "context": [""]
+        },
+        {"tag": "pharmacy_search",
+         "patterns": ["Find me a pharmacy", "Find pharmacy", "List of pharmacies nearby", "Locate pharmacy", "Search pharmacy" ],
+         "responses": ["Please provide pharmacy name"],
+         "context": ["search_pharmacy_by_name"]
+        },
+        {"tag": "search_pharmacy_by_name",
+         "patterns": [],
+         "responses": ["Loading pharmacy details"],
+         "context": [""]
+        },
+        {"tag": "hospital_search",
+         "patterns": ["Lookup for hospital", "Searching for hospital to transfer patient", "I want to search hospital data", "Hospital lookup for patient", "Looking up hospital details" ],
+         "responses": ["Please provide hospital name or location"],
+         "context": ["search_hospital_by_params"]
+        },
+        {"tag": "search_hospital_by_params",
+         "patterns": [],
+         "responses": ["Please provide hospital type"],
+         "context": ["search_hospital_by_type"]
+        },
+        {"tag": "search_hospital_by_type",
+         "patterns": [],
+         "responses": ["Found hospital details"],
+         "context": [""]
+        }
+  
+ ]
+}
