@@ -1,2 +1,3 @@
-# supplychat.io
-SupplyChat Website
+# SupplyChat
+
+Submission for EpsilonHacks 2020.
