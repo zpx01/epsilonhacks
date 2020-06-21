@@ -1,4 +1,3 @@
-
 import nltk
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -9,11 +8,16 @@ from keras.models import load_model
 model = load_model('chatbot_model.h5')
 import json
 import random
-intents = json.loads(open('intents.json').read())
-words = pickle.load(open('words.pkl','rb'))
-classes = pickle.load(open('classes.pkl','rb'))
 
 
+@app.route('/main', methods=['GET', 'POST'])
+def start_model():
+    model = load_model('chatbot_model.h5')
+    intents = json.loads(open('intents.json').read())
+    words = pickle.load(open('words.pkl','rb'))
+    classes = pickle.load(open('classes.pkl','rb'))
+
+@app.route('/main', methods=['GET', 'POST'])
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
@@ -21,6 +25,7 @@ def clean_up_sentence(sentence):
 
 # return bag of words array: 0 or 1 for each word in the bag that exists in the sentence
 
+@app.route('/main', methods=['GET', 'POST'])
 def bow(sentence, words, show_details=True):
     # tokenize the pattern
     sentence_words = clean_up_sentence(sentence)
@@ -35,6 +40,7 @@ def bow(sentence, words, show_details=True):
                     print ("found in bag: %s" % w)
     return(np.array(bag))
 
+@app.route('/main', methods=['GET', 'POST'])
 def predict_class(sentence, model):
     # filter predictions at threshold
     p = bow(sentence, words,show_details=False)
@@ -48,6 +54,7 @@ def predict_class(sentence, model):
         return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
     return return_list
 
+@app.route('/main', methods=['GET', 'POST'])
 def getResponse(ints, intents_json):
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
@@ -57,61 +64,9 @@ def getResponse(ints, intents_json):
             break
     return result
 
+@app.route('/main', methods=['GET', 'POST'])
 def chatbot_response(msg):
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
     return res
 
-
-#Creating GUI with tkinter
-import tkinter
-from tkinter import *
-
-
-def send():
-    msg = EntryBox.get("1.0",'end-1c').strip()
-    EntryBox.delete("0.0",END)
-
-    if msg != '':
-        ChatLog.config(state=NORMAL)
-        ChatLog.insert(END, "You: " + msg + '\n\n')
-        ChatLog.config(foreground="#ffffff", font=("Verdana", 14 ))
-
-        res = chatbot_response(msg)
-        ChatLog.insert(END, "SupplyChat: " + res + '\n\n')
-
-        ChatLog.config(state=DISABLED)
-        ChatLog.yview(END)
-
-
-base = Tk()
-base.title("SupplyChat")
-base.geometry("650x500")
-base.resizable(width=TRUE, height=TRUE)
-
-#Chat window
-ChatLog = Text(base, bd=0, bg="blue", height="8", width="50", font=("Arial", 15))
-
-ChatLog.config(state=DISABLED)
-
-#Scrollbar
-scrollbar = Scrollbar(base, command=ChatLog.yview, cursor="circle")
-ChatLog['yscrollcommand'] = scrollbar.set
-
-#Create Button to send message
-SendButton = Button(base, font=("Verdana",14,'bold'), text="Send", width="12", height=5,
-                    bd=0, bg="blue", activebackground="blue",fg='blue',
-                    command= send )
-
-#Create the box to enter message
-EntryBox = Text(base, bd=0, bg="white",width="29", height="5", font=("Arial", 15))
-
-
-
-#Components on the screen
-scrollbar.place(x=550,y=6, height=386)
-ChatLog.place(x=6,y=6, height=386, width=500)
-EntryBox.place(x=128, y=401, height=90, width=500)
-SendButton.place(x=6, y=401, height=90)
-
-base.mainloop()
