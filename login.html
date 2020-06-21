@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="css/auth.css">
+
+<div class="login-page">
+  <div class="form">
+        <h3>Log in</h3>
+        <input id="email" type="text" placeholder="email"/>
+        <input id="password" type="password" placeholder="password"/>
+        <button id="btn-login">login</button>
+        <p>Other Login Methods:</p>
+        <img id="google" class="img" src="./assets/img/google.jpg">
+        <img id="facebook" class="img" src="./assets/img/facebook.png">
+        <p class="message">Not registered? <a href="./signup.html">Create an account</a></p>
+        <p id="error"></p>
+    </div>
+  </div>
+</div>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+  
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+  
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src='./js/auth.js'></script>
