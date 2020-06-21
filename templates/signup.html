@@ -162,20 +162,7 @@ body {
 
 
 
-  firebase.auth().signOut();
-  function login(){
-      console.log('logging in')
-      console.log(self.email, self.pass)
-      firebase.auth().signInWithEmailAndPassword(self.email, self.pass).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // ...
-          location.replace('../main.html')
-
-      });
-        
-  }
+  // firebase.auth().signOut();
 
   // ! delete later
     // firebase.auth().sign
@@ -190,7 +177,7 @@ body {
           var errorCode = error.code;
           var errorMessage = error.message;
           // ...
-          location.replace('../main.html')
+          location.replace('/main')
 
         });
   }

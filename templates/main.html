@@ -155,12 +155,16 @@
   #upload{
     margin-bottom: 85vh;
   }
+  #logout{
+    margin-bottom: 85vh;
+  }
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <section>
   <div>
     <button class="btn btn-primary" id="upload"> Upload Data</button>
+    <button class="btn btn-primary" id="logout"> Logout</button>
   </div>
 </section>
 
@@ -234,6 +238,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
   <script>
+var firebaseConfig = {
+  apiKey: "AIzaSyCamsifrN7CQYIS_HJ2I0eKPyynHCWvVGw",
+  authDomain: "d-bot-6c007.firebaseapp.com",
+  databaseURL: "https://d-bot-6c007.firebaseio.com",
+  projectId: "d-bot-6c007",
+  storageBucket: "d-bot-6c007.appspot.com",
+  messagingSenderId: "1002059730049",
+  appId: "1:1002059730049:web:c0593f4cc0efc52756d180"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
     const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
@@ -294,9 +310,7 @@ function botResponse() {
     // alert('response!!')
     // console.log('hello world')
   $(document).ready(function () {
-    $.post("/testrun", {
-      // canvas_data: JSON.stringify(outputData)
-    }, function(err, req, resp){
+    $.post("/testrun", function(err, req, resp){
         console.log(resp);
     })
   })
@@ -319,5 +333,9 @@ function formatDate(date) {
 function random(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
+
+$('#logout').on("click", function() {
+  firebase.auth().signOut()
+})
 
   </script>

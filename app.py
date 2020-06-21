@@ -21,10 +21,10 @@ def login():
 def signup():
     return render_template('signup.html')
 
-# @app.route('/testrun', methods = ['POST'])
-# def test():
+@app.route('/testrun', methods = ['POST'])
+def test():
 
-#     return 'cool info'
+    return 'cool info'
 
 if __name__ == "__main__":
     app.run(debug=True)

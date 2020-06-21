@@ -161,38 +161,21 @@ body {
 
 
 
-firebase.auth().signOut();
-function login(){
-    console.log('logging in')
-    console.log(self.email, self.pass)
-    firebase.auth().signInWithEmailAndPassword(self.email, self.pass).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        location.replace('../main.html')
-
-    });
-      
-}
-
-// ! delete later
-  // firebase.auth().sign
-
-function signup(){
-    let email = document.getElementById("email").value;
-    let pass = document.getElementById("password").value;
-    console.log('signing up')
-    console.log(email,pass)
-    firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        location.replace('../main.html')
+  function login(){
+      let email = document.getElementById("email").value;
+      let pass = document.getElementById("password").value;
+      console.log('logging in')
+      console.log(email, pass)
+      firebase.auth().signInWithEmailAndPassword(email, pass).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+          location.replace('../main.html')
 
       });
-}
+        
+  }
 
 // ? get login btn
 let loginBtn = document.getElementById("btn-login")
@@ -275,7 +258,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     var providerData = user.providerData;
     // ...
 
-    window.location.replace('file:///Users/darhart/Desktop/Repositories/Darrow_Projects/supplychat.io/main.html')
+    window.location.replace('/main')
     console.log(user)
   } else {
     // User is signed out.
