@@ -1,0 +1,324 @@
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: rgba(1, 3, 111, 0.8);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: rgba(1, 3, 111, 0.8);
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: rgba(1, 3, 111, 0.8);
+  text-decoration: none;
+}
+/* .form .register-form {
+  display: none;
+} */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  background: rgba(1, 3, 111, 0.8); /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, rgba(1, 3, 111, 0.8), rgba(1, 3, 111, 0.8));
+  background: -moz-linear-gradient(right, rgba(1, 3, 111, 0.8), rgba(1, 3, 111, 0.8));
+  background: -o-linear-gradient(right, rgba(1, 3, 111, 0.8), rgba(1, 3, 111, 0.8));
+  background: linear-gradient(to left, rgba(1, 3, 111, 0.8), rgba(1, 3, 111, 0.8));
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+
+#error{
+  color: red;
+}
+
+
+.img{
+  display: inline;
+  width: 40%;
+  height: 6vh;
+  object-fit: cover;
+  /* box-shadow: 0px 3px rgba(0,0,0,.15); */
+  transition: all .4s ease;
+}
+
+.img:hover{cursor: pointer;}
+</style>
+
+<div class="login-page">
+    <div class="form">
+        <h3>Signup</h3>
+        <input type="text" placeholder="name"/>
+        <input id="email" type="text" placeholder="email address"/>
+        <input id="password" type="password" placeholder="password"/>
+        <input id="password-repeat" type="password" placeholder="repeat password"/>
+        <button id="btn-signup">create</button>
+        <p>Other Signup Methods:</p>
+        <img id="google" class="img" src="{{url_for('static',filename='google.jpg')}}">
+        <img id="facebook" class="img" src="{{url_for('static',filename='facebook.png')}}">
+        <p class="message">Already registered? <a href="./login">Sign In</a></p>
+        <p id="error"></p>
+    </div>
+  </div>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+  
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+  
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+       // Your web app's Firebase configuration
+  
+    var firebaseConfig = {
+      apiKey: "AIzaSyCamsifrN7CQYIS_HJ2I0eKPyynHCWvVGw",
+      authDomain: "d-bot-6c007.firebaseapp.com",
+      databaseURL: "https://d-bot-6c007.firebaseio.com",
+      projectId: "d-bot-6c007",
+      storageBucket: "d-bot-6c007.appspot.com",
+      messagingSenderId: "1002059730049",
+      appId: "1:1002059730049:web:c0593f4cc0efc52756d180"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+
+
+  firebase.auth().signOut();
+  function login(){
+      console.log('logging in')
+      console.log(self.email, self.pass)
+      firebase.auth().signInWithEmailAndPassword(self.email, self.pass).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+          location.replace('../main.html')
+
+      });
+        
+  }
+
+  // ! delete later
+    // firebase.auth().sign
+
+  function signup(){
+      let email = document.getElementById("email").value;
+      let pass = document.getElementById("password").value;
+      console.log('signing up')
+      console.log(email,pass)
+      firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+          location.replace('../main.html')
+
+        });
+  }
+
+  // ? get login btn
+  let loginBtn = document.getElementById("btn-login")
+  if(loginBtn !=undefined){
+      console.log('login btn found')
+      loginBtn.addEventListener("click",login);
+  }else{
+      console.log('login btn not found')
+  }
+
+  // * get signup btn
+  let signupBtn = document.getElementById("btn-signup")
+  if(signupBtn != undefined){
+      console.log('signup btn found')
+      signupBtn.addEventListener("click",signup);
+  }else{
+      console.log('signup btn not found')
+  }
+
+
+  $('#google').on("click", function() {
+    console.log("image clicked");
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+    firebase.auth().signInWithRedirect(provider);
+
+  });
+  $('#facebook').on("click", function() {
+    console.log("image clicked");
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().languageCode = 'fr_FR';
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+    firebase.auth().signInWithRedirect(provider);
+
+  });
+
+
+  // ? detect user code:
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
+      var providerData = user.providerData;
+      // ...
+
+      window.location.replace('file:///Users/darhart/Desktop/Repositories/Darrow_Projects/supplychat.io/main.html')
+      console.log(user)
+    } else {
+      // User is signed out.
+      // ...
+    }
+  });
+
+  firebase.auth().getRedirectResult().then(function(result) {
+    if (result.credential) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // ...
+    }
+    // The signed-in user info.
+    var user = result.user;
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  firebase.auth().getRedirectResult().then(function(result) {
+    if (result.credential) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // ...
+    }
+    // The signed-in user info.
+    var user = result.user;
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+
+    </script>
